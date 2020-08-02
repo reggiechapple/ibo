@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="ui container">
+    <div class="ui padded grid">
+        <div class="row">
+            <div class="sixteen wide column">
+                <h1 class="ui dividing header">{{ professional.user.name }}'s Activity Center</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="four wide column">
+                {% include 'partials/base/_sidenav.html' %}
+            </div>
+            <div class="twelve wide column">
+                <h1 class="ui dividing header">Applications</h1>
+                <table class="ui table striped">
+                    <thead>
+                        <tr>
+                            <th>Employer</th>
+                            <th>Job</th>
+                            <th>Match</th>
+                            <th>Status</th>
+                            <th>Date Applied</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for app in applications %}
+                        <tr>
+                            <td>{{ app.job.creator.company_name }}</td>
+                            <td>{{ app.job.name }}</td>
+                            <td>{{ app.match }}
+                            <td>{{ app.status }}</td>
+                            <td>{{ app.date_applied }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
